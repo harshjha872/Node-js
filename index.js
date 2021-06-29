@@ -1,6 +1,7 @@
-const fs = require('fs');
+// const fs = require('fs');
 const http = require('http');
-const url = require('url');
+const routes = require('./routes');
+// const url = require('url');
 
 // const data = fs.readFileSync('./txt/read.txt', 'utf-8');
 // const data2 = fs.readFile('./txt/read.txt', 'utf-8', (err, data) => {
@@ -8,11 +9,8 @@ const url = require('url');
 // });
 // console.log('First statement');
 
-const server = http.createServer((req, res) => {
-  console.log(req.url);
-  res.end('Hello to the node js createdserver');
-});
+const server = http.createServer(routes);
 
 server.listen(8000, '127.0.0.1', () => {
-  console.log('server running');
+  console.log('Running on port 8000');
 });
