@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/addtext', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../', 'views', 'addtext.html'));
+  res.render('addtext', { title: 'AddText' });
 });
 
 router.post('/gettext', (req, res, next) => {
