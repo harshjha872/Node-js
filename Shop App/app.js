@@ -4,6 +4,7 @@ const path = require('path');
 const adminRouter = require('./routes/admin');
 const PublicRouter = require('./routes/public');
 const detailRouter = require('./routes/productDetail');
+const Database = require('./Database/database');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -22,4 +23,9 @@ app.use((req, res, next) => {
   });
 });
 
-app.listen(3000);
+Database.ConnectDatabase(() => {
+  const db = Database.getDB();
+  console.log(db);
+
+  app.listen(3000);
+});
