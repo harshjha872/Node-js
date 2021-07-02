@@ -19,7 +19,8 @@
       <p>Some products...</p>
       <% ListOfNumber.forEach(ele => { %>
       <ul>
-        <li><%= ele.item %></li>
+        <li><%= ele.title %></li>
+        <span><a href="/product/<%= ele.id %>">details</a></span>
       </ul>
       <% }) %>
     </main>

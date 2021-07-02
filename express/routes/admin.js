@@ -1,16 +1,16 @@
 const express = require('express');
+const products = require('../modals/product');
 
 const router = express.Router();
 
-const products = [];
 router.get('/addtext', (req, res, next) => {
   res.render('addtext', { title: 'AddText' });
 });
 
 router.post('/gettext', (req, res, next) => {
-  products.push({ item: req.body.innertext });
+  const NewProduct = new products(req.body.innertext);
+  NewProduct.save();
   res.redirect('/');
 });
 
-exports.router = router;
-exports.products = products;
+module.exports = router;
