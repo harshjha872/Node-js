@@ -6,18 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/stlye.css" />
-  </head>
-  <body>
-    <header>
-      <ul>
-        <li><a href="/">Home Page</a></li>
-        <li><a href="/admin/addtext">addText</a></li>
-      </ul>
-    </header>
+
+    <%- include('non-repeating-templates/navbar.ejs'),{activeClass: activeClass,route: route} %>
+    
     <main>
       <form action="/admin/gettext" method="POST">
         <input type="text" name="innertext" />
-        <button type="submit">Add</button>
+        <button class="ui button" type="submit">Add</button>
       </form>
     </main>
   </body>

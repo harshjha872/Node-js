@@ -8,6 +8,8 @@ Pubrouter.get('/', (req, res, next) => {
   products.fetchAll((prod) => {
     res.render('public', {
       title: 'home page',
+      activeClass: 'active',
+      route: '/',
       ListOfNumber: prod,
     });
   });

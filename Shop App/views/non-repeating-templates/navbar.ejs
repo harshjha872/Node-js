@@ -1,0 +1,25 @@
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+/>
+</head>
+<body>
+<div class="ui fluid inverted segment" style="border-radius: 0%">
+  <div class="ui inverted secondary huge menu">
+    <a class="item <%= route === '/' ? activeClass : ''  %>" href="/"> Home </a>
+    <a class="item <%= route === '/admin/addtext' ? activeClass : ''  %>" href="/admin/addtext"> AddItem </a>
+    <a class="item"> Cart </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text" placeholder="Search..." />
+          <i class="search link icon"></i>
+        </div>
+      </div>
+      <a class="ui item"> Logout </a>
+    </div>
+  </div>
+</div>

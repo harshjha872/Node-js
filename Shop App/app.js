@@ -26,6 +26,5 @@ app.use((req, res, next) => {
 Database.ConnectDatabase(() => {
   const db = Database.getDB();
   console.log(db);
-
   app.listen(3000);
 });

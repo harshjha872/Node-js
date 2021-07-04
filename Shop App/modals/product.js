@@ -2,8 +2,11 @@ const path = require('path');
 const fs = require('fs');
 
 module.exports = class Product {
-  constructor(title) {
+  constructor(title, discription, imageUrl, price) {
     this.title = title;
+    this.discription = discription;
+    this.imageUrl = imageUrl;
+    this.price = price;
     this.id = Math.random().toString();
   }
 
