@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/stlye.css" />
 
-    <%- include('non-repeating-templates/navbar.ejs'),{activeClass: activeClass,route: route} %>
-    
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/css/stlye.css" />
+
+  <%- include('non-repeating-templates/navbar.ejs'),{activeClass: activeClass,route: route} %>
+
     <main>
-      <form action="/admin/gettext" method="POST">
-        <input type="text" name="innertext" />
-        <button class="ui button" type="submit">Add</button>
-      </form>
+      <div class="container centered">
+        <div class="ui three column six wide centered grid">
+          <div class="column">
+
+          </div>
+          <div class="column">
+            <form class="ui form" action="/admin/gettext" method="POST">
+              <div class="field">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Title">
+              </div>
+              <div class="field">
+                <label>Discription</label>
+                <input type="text" name="discription" placeholder="Discription">
+              </div>
+              <div class="field">
+                <label>Image url</label>
+                <input type="text" name="imageUrl" placeholder="Image url">
+              </div>
+              <div class="field">
+                <label>Price</label>
+                <input type="text" name="price" placeholder="Price">
+              </div>
+              <button class="ui button" type="submit">Submit</button>
+            </form>
+          </div>
+          <div class="column">
+            
+          </div>
+        </div>
+      </div>
     </main>
-  </body>
+    </body>
+
 </html>

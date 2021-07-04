@@ -13,10 +13,10 @@ router.get('/addtext', (req, res, next) => {
 
 router.post('/gettext', (req, res, next) => {
   const NewProduct = new products(
-    req.body.innertext,
-    'svwrvw',
-    'rsvwrvw',
-    'wefwefw'
+    req.body.title,
+    req.body.discription,
+    req.body.imageUrl,
+    req.body.price
   );
   NewProduct.save();
   res.redirect('/');

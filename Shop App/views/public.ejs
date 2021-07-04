@@ -11,13 +11,35 @@
     
     <main>
       <h1>Some Products...</h1>
-
-      <% ListOfNumber.forEach(ele => { %>
-      <ul>
-        <li><%= ele.title %></li>
-        <span><a href="/product/<%= ele.id %>">details</a></span>
-      </ul>
-      <% }) %>
+      <div class="container">
+        <div class="ui four column centered grid">
+          <% if(ListOfNumber) {%>
+            <% ListOfNumber.forEach(ele => { %>
+              <div class="column">
+                <div class="ui centered card">
+                  <div class="image">
+                    <img src="<%= ele.imageUrl %>" />
+                  </div>
+                  <div class="content">
+                    <a class="header"><%= ele.title %></a>
+                    <div class="description">
+                      <%= ele.discription %>
+                    </div>
+                  </div>
+                  <div class="extra content">
+                    <div class="header"><%= ele.price %> $</div>
+                  </div>
+                  <div class="extra content">
+                    <button class="ui secondary button">Details</button>
+                    <button class="ui button">Add to cart</button>
+                  </div>
+                </div>
+    
+              </div>
+              <% }) %>
+          <% } %>    
+        </div>
+      </div>
     </main>
   </body>
 </html>

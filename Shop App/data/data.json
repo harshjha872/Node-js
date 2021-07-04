@@ -1,1 +1,16 @@
-[{"title":"book","id":"0.40749140638729764"},{"title":"new book","id":"0.40250508894620807"},{"title":"dummy","discription":"svwrvw","imageUrl":"rsvwrvw","price":"wefwefw","id":"0.5832686089617911"}]
+[
+  {
+    "title": "Car",
+    "discription": "This is a great Car u can buy",
+    "imageUrl": "https://source.unsplash.com/1600x900/?car",
+    "price": "3000",
+    "id": "0.40493795082257233"
+  },
+  {
+    "title": "A bulb",
+    "discription": "very good bulb",
+    "imageUrl": "https://source.unsplash.com/1600x900/?bulb",
+    "price": "19",
+    "id": "0.9303115624209448"
+  }
+]
