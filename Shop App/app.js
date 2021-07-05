@@ -5,8 +5,10 @@ const adminRouter = require('./routes/admin');
 const PublicRouter = require('./routes/public');
 const detailRouter = require('./routes/productDetail');
 // const Database = require('./Database/database');
-const app = express();
+const editRouter = require('./routes/editrouter');
+const CartRouter = require('./routes/cartRoute');
 
+const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
@@ -14,12 +16,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRouter);
+app.use(CartRouter);
 app.use('/product', detailRouter);
+app.use('/editproduct', editRouter);
+
 app.use(PublicRouter);
 
 app.use((req, res, next) => {
   res.status(404).render('pnf', {
     title: 'Page not found',
+    activeClass: '',
+    route: '',
   });
 });
 
@@ -27,4 +34,5 @@ app.use((req, res, next) => {
 //   const db = Database.getDB();
 //   console.log(db);
 // });
+
 app.listen(3000);

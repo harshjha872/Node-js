@@ -4,10 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <p><%= title %></p>
-    <p><%= id %></p>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/stlye.css" />
+
+    <%- include('non-repeating-templates/navbar.ejs'),{activeClass: activeClass,route:route} %>
+    
+    <main>
+      <div class="container">
+        <div class="ui four column centered grid">
+       
+           
+              <div class="column">
+                <div class="ui centered card">
+                  <div class="image">
+                    <img src="<%= product.imageUrl %>" />
+                  </div>
+                  <div class="content">
+                    <a class="header"><%= product.title %></a>
+                    <div class="description">
+                      <%= product.discription %>
+                    </div>
+                  </div>
+                  <div class="extra content">
+                    <div class="header"><%= product.price %> $</div>
+                  </div>
+                  <div class="extra content">
+                    <form action="/deleteproduct" method="post">
+                      <button class="ui inverted red button">Delete</button>
+                      <input type="hidden" name="deleteProduct" value="<%= product.id %>">
+                    </form>
+                    
+                    <button class="ui button">Add to cart</button>
+                    <a href="/editproduct/<%= product.id %>">Edit</a>
+                  </div>
+                </div>
+    
+              </div>
+     
+     
+        </div>
+      </div>
+    </main>
   </body>
 </html>
+

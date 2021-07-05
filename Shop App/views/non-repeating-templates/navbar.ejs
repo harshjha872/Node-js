@@ -11,7 +11,7 @@ referrerpolicy="no-referrer"
   <div class="ui inverted secondary huge menu">
     <a class="item <%= route === '/' ? activeClass : ''  %>" href="/"> Home </a>
     <a class="item <%= route === '/admin/addtext' ? activeClass : ''  %>" href="/admin/addtext"> AddItem </a>
-    <a class="item"> Cart </a>
+    <a class="item  <%= route === '/cart' ? activeClass : ''  %>"" href="/cart"> Cart </a>
     <div class="right menu">
       <div class="item">
         <div class="ui icon input">

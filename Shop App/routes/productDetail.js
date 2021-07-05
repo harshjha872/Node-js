@@ -6,7 +6,12 @@ detailRouter.get('/:id', (req, res, next) => {
   const productID = req.params.id;
   products.fetchAll((allProd) => {
     const foundedProd = allProd.find((curr) => curr.id === productID);
-    res.render('productDetail', foundedProd);
+    res.render('productDetail', {
+      title: 'details',
+      activeClass: '',
+      route: `/product/${productID}`,
+      product: foundedProd,
+    });
   });
 });
 

@@ -10,7 +10,7 @@ Pubrouter.get('/', (req, res, next) => {
       title: 'home page',
       activeClass: 'active',
       route: '/',
-      ListOfNumber: prod,
+      ListOfproducts: prod,
     });
   });
 });
