@@ -11,4 +11,10 @@ CartRouter.get('/cart', (req, res, next) => {
   });
 });
 
+CartRouter.post('/cart', (req, res, next) => {
+  const addtocartProd = req.body.cartId;
+  console.log(addtocartProd);
+  res.redirect('/');
+});
+
 module.exports = CartRouter;

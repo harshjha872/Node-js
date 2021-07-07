@@ -29,14 +29,18 @@
                     <div class="header"><%= product.price %> $</div>
                   </div>
                   <div class="extra content">
-                    <form action="/deleteproduct" method="post">
+                    <button class="ui button">Add to cart</button>
+                  <a href="/editproduct/<%= product.id %>">Edit</a>
+                  </div>
+                  <div class="extra content">
+                    <form action="/product/deleteproduct" method="POST">
                       <button class="ui inverted red button">Delete</button>
                       <input type="hidden" name="deleteProduct" value="<%= product.id %>">
                     </form>
+
                     
-                    <button class="ui button">Add to cart</button>
-                    <a href="/editproduct/<%= product.id %>">Edit</a>
                   </div>
+
                 </div>
     
               </div>

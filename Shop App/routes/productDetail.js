@@ -15,4 +15,10 @@ detailRouter.get('/:id', (req, res, next) => {
   });
 });
 
+detailRouter.post('/deleteproduct', (req, res, next) => {
+  const deleteThisProduct = req.body.deleteProduct;
+  products.deleteProduct(deleteThisProduct);
+  res.redirect('/');
+});
+
 module.exports = detailRouter;

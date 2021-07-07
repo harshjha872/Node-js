@@ -16,7 +16,7 @@ router.post('/gettext', (req, res, next) => {
     req.body.title,
     req.body.discription,
     req.body.imageUrl,
-    req.body.price
+    Number(req.body.price)
   );
   NewProduct.save();
   res.redirect('/');
