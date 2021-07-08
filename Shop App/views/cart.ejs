@@ -12,8 +12,8 @@
     <main>
       <div class="container">
         <div class="ui four column centered grid">
-          <% if(ListOfproducts) {%>
-            <% ListOfproducts.forEach(ele => { %>
+          <% if(ListOfproducts) { %>
+            <% ListOfproducts.products.forEach(ele => { %>
               <div class="column">
                 <div class="ui centered card">
                   <div class="image">
@@ -27,11 +27,11 @@
                   </div>
                   <div class="extra content">
                     <div class="header"><%= ele.price %> $</div>
+                    <div class="header">Quantity: <%= ele.qty %></div>
                   </div>
                   <div class="extra content">
                     <a href="/product/<%= ele.id %>"><button class="ui secondary button">Details</button></a>
-                    <button class="ui button">Add to cart</button>
-                    <a href="/editproduct/<%= ele.id %>">Edit</a>
+
                   </div>
                 </div>
     

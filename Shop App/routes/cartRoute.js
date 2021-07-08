@@ -1,19 +1,22 @@
 const express = require('express');
+const cart = require('../modals/cart');
 
 const CartRouter = express.Router();
 
 CartRouter.get('/cart', (req, res, next) => {
-  res.render('cart.ejs', {
-    title: 'Cart',
-    activeClass: 'active',
-    route: '/cart',
-    ListOfproducts: null,
+  cart.fetchCartProd((prod) => {
+    res.render('cart.ejs', {
+      title: 'Cart',
+      activeClass: 'active',
+      route: '/cart',
+      ListOfproducts: prod,
+    });
   });
 });
 
 CartRouter.post('/cart', (req, res, next) => {
   const addtocartProd = req.body.cartId;
-  console.log(addtocartProd);
+  cart.Add(addtocartProd);
   res.redirect('/');
 });
 

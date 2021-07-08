@@ -1,1 +1,1 @@
-{ "products": [{}], "totalprice": 0 }
+{"products":[{"title":"Car","discription":"This is a great Car u can buy","imageUrl":"https://source.unsplash.com/1600x900/?car","price":3000,"id":"0.40493795082257233","qty":17},{"title":"bulb","discription":"This is a great bulb","imageUrl":"https://source.unsplash.com/1600x900/?bulb","price":10,"id":"0.9618635401296911","qty":2},{"title":"Website","discription":"nicely made website in node js for you","imageUrl":"https://source.unsplash.com/1600x900/?website","price":20,"id":"0.11771484518414499","qty":3}],"totalprice":3030}

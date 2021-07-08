@@ -29,12 +29,15 @@
                     <div class="header"><%= ele.price %> $</div>
                   </div>
                   <div class="extra content">
-                    <a href="/product/<%= ele.id %>"><button class="ui secondary button">Details</button></a>
                     <form action="/cart" method="POST">
                       <input type="hidden" name="cartId" value="<%= ele.id %>">
-                       <button class="ui button" type="submit">Add to cart</button>
+                      <button class="ui button" type="submit">Add to cart</button>
+                      <a href="/editproduct/<%= ele.id %>">Edit</a>
                     </form>
-                    <a href="/editproduct/<%= ele.id %>">Edit</a>
+
+                  </div>
+                  <div class="extra content">
+                    <a href="/product/<%= ele.id %>"><button class="ui secondary button">Details</button></a>
                   </div>
                 </div>
               </div>
