@@ -20,4 +20,10 @@ CartRouter.post('/cart', (req, res, next) => {
   res.redirect('/');
 });
 
+CartRouter.post('/deleteproductcart', (req, res, next) => {
+  const deleteProdCart = req.body.deleteProductfromcart;
+  cart.deleteProduct(deleteProdCart);
+  res.redirect('/');
+});
+
 module.exports = CartRouter;

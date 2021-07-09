@@ -31,7 +31,16 @@
                   </div>
                   <div class="extra content">
                     <a href="/product/<%= ele.id %>"><button class="ui secondary button">Details</button></a>
+                    
 
+                  </div>
+                  <div class="extra content">
+                    <form action="/deleteproductcart" method="POST">
+                      <button class="ui inverted red button">Delete</button>
+                      <input type="hidden" name="deleteProductfromcart" value="<%= ele.id %>">
+                    </form>
+
+                    
                   </div>
                 </div>
     

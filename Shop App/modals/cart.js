@@ -42,7 +42,29 @@ module.exports = class Cart {
           cd([]);
         } else {
           cd(JSON.parse(content));
-          console.log(JSON.parse(content));
+        }
+      }
+    );
+  }
+
+  static deleteProduct(id) {
+    let CartAllProducts;
+    fs.readFile(
+      path.join(__dirname, '../', 'data', 'cart.json'),
+      (err, data) => {
+        if (!err) {
+          CartAllProducts = JSON.parse(data);
+          const NewProducts = CartAllProducts.products.filter(
+            (ele) => ele.id !== id
+          );
+          CartAllProducts.products = NewProducts;
+          fs.writeFile(
+            path.join(__dirname, '../', 'data', 'cart.json'),
+            JSON.stringify(CartAllProducts),
+            (err) => console.log(err)
+          );
+        } else {
+          console.log(err);
         }
       }
     );
