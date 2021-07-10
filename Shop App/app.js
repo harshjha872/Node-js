@@ -7,6 +7,7 @@ const detailRouter = require('./routes/productDetail');
 // const Database = require('./Database/database');
 const editRouter = require('./routes/editrouter');
 const CartRouter = require('./routes/cartRoute');
+const mongoose = require('mongoose');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -35,4 +36,11 @@ app.use((req, res, next) => {
 //   console.log(db);
 // });
 
-app.listen(3000);
+mongoose
+  .connect(
+    'mongodb+srv://harshjha:Harshjha872aps@node-first.yyzhe.mongodb.net/shop?etryWrites=true&w=majority'
+  )
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
+
+// app.listen(3000);
