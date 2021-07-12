@@ -40,7 +40,7 @@ mongoose
   .connect(
     'mongodb+srv://harshjha:Harshjha872aps@node-first.yyzhe.mongodb.net/shop?etryWrites=true&w=majority'
   )
-  .then((result) => app.listen(3000))
+  .then(() => app.listen(3000))
   .catch((err) => console.log(err));
 
 // app.listen(3000);
