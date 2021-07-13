@@ -8,6 +8,7 @@ const detailRouter = require('./routes/productDetail');
 const editRouter = require('./routes/editrouter');
 const CartRouter = require('./routes/cartRoute');
 const mongoose = require('mongoose');
+const User = require('./modals/user');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -40,7 +41,15 @@ mongoose
   .connect(
     'mongodb+srv://harshjha:Harshjha872aps@node-first.yyzhe.mongodb.net/shop?etryWrites=true&w=majority'
   )
-  .then(() => app.listen(3000))
+  .then(() => {
+    const user = new User({
+      username: 'harshjha872',
+      password: 'harshjha@',
+      cart: [],
+    });
+    user.save();
+    app.listen(3000);
+  })
   .catch((err) => console.log(err));
 
 // app.listen(3000);
