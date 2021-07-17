@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //SESSIONS
+
 const MongoStore = new MongoConnectSession({
   uri: 'mongodb+srv://harshjha:Harshjha872aps@node-first.yyzhe.mongodb.net/shop?etryWrites=true&w=majority',
   collection: 'sessions',
@@ -34,20 +35,6 @@ app.use(
     store: MongoStore,
   })
 );
-
-// app.post('/login', (req, res, next) => {
-//   req.session.loggedIn = true;
-//   res.redirect('/');
-// });
-
-// app.post('/logout', (req, res, next) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       console.log(err);
-//     }
-//     res.redirect('/');
-//   });
-// });
 
 //ROUTES
 
@@ -67,24 +54,11 @@ app.use((req, res, next) => {
   });
 });
 
-// Database.ConnectDatabase(() => {
-//   const db = Database.getDB();
-//   console.log(db);
-// });
-
 mongoose
   .connect(
     'mongodb+srv://harshjha:Harshjha872aps@node-first.yyzhe.mongodb.net/shop?etryWrites=true&w=majority'
   )
   .then(() => {
-    // const user = new User({
-    //   username: 'harshjha872',
-    //   password: 'harshjha@',
-    //   cart: [],
-    // });
-    // user.save();
     app.listen(3000);
   })
   .catch((err) => console.log(err));
-
-// app.listen(3000);
