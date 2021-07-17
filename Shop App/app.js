@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 // const User = require('./modals/user');
 const session = require('express-session');
 const MongoConnectSession = require('connect-mongodb-session')(session);
+const Auth = require('./routes/Auth');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -34,22 +35,23 @@ app.use(
   })
 );
 
-app.post('/login', (req, res, next) => {
-  req.session.loggedIn = true;
-  res.redirect('/');
-});
+// app.post('/login', (req, res, next) => {
+//   req.session.loggedIn = true;
+//   res.redirect('/');
+// });
 
-app.post('/logout', (req, res, next) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-    }
-    res.redirect('/');
-  });
-});
+// app.post('/logout', (req, res, next) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     res.redirect('/');
+//   });
+// });
 
 //ROUTES
 
+app.use(Auth);
 app.use('/admin', adminRouter);
 app.use(CartRouter);
 app.use('/product', detailRouter);
