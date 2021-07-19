@@ -1,1 +1,13 @@
-{"products":[{"title":"Car","discription":"This is a great Car u can buy","imageUrl":"https://source.unsplash.com/1600x900/?car","price":3000,"id":"0.40493795082257233","qty":2}],"totalprice":3000}
+{
+  "products": [
+    {
+      "title": "Car",
+      "discription": "This is a great Car u can buy",
+      "imageUrl": "https://source.unsplash.com/1600x900/?car",
+      "price": 3000,
+      "id": "0.40493795082257233",
+      "qty": 2
+    }
+  ],
+  "totalprice": 3000
+}
