@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><% title %></title>
-    <%- include('non-repeating-templates/navbar.ejs') %>
+    <%- include('non-repeating-templates/navbar.ejs'),{isloggedIn:isloggedIn} %>
     <div class="container centered">
         <div class="ui three column six wide centered grid">
           <div class="column">

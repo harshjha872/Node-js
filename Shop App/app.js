@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoConnectSession = require('connect-mongodb-session')(session);
 const Auth = require('./routes/Auth');
+const Protectroute = require('./routes/ProtectRoutes');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -38,13 +39,12 @@ app.use(
 
 //ROUTES
 
-app.use(Auth);
-app.use('/admin', adminRouter);
-app.use(CartRouter);
-app.use('/product', detailRouter);
-app.use('/editproduct', editRouter);
-
 app.use(PublicRouter);
+app.use('/product', detailRouter);
+app.use(Auth);
+app.use('/admin', Protectroute, adminRouter);
+app.use(Protectroute, CartRouter);
+app.use('/editproduct', Protectroute, editRouter);
 
 app.use((req, res, next) => {
   res.status(404).render('pnf', {

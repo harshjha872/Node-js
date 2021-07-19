@@ -22,6 +22,7 @@ Pubrouter.get('/', (req, res, next) => {
       activeClass: 'active',
       route: '/',
       ListOfproducts: products,
+      isloggedIn: req.session.loggedIn,
     });
   });
 });

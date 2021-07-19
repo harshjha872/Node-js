@@ -9,6 +9,7 @@ router.get('/addtext', (req, res, next) => {
     title: 'AddText',
     activeClass: 'active',
     route: '/admin/addtext',
+    isloggedIn: req.session.loggedIn,
   });
 });
 

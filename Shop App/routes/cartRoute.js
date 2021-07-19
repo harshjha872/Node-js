@@ -3,23 +3,24 @@ const user = require('../modals/user');
 const CartRouter = express.Router();
 const products = require('../Database/database-mongoose');
 
-let prods = [];
-
-const getCart = (singleProd) => {
-  prods.push(singleProd);
-};
-
 CartRouter.get('/cart', (req, res, next) => {
   user.findOne({ email: req.session.user.email }).then((CurrUser) => {
-    CurrUser.cart.forEach((ele) => {
-      products
-        .findById(String(ele.CartProduct))
-        .then((Prod) => {
-          getCart(Prod);
-        })
-        .catch((err) => console.log(err));
+    // const prods = CurrUser.cart.map((ele) => {
+    //   return products
+    //     .findById(String(ele.CartProduct))
+    //     .then((Prod) => {
+    //       return Prod;
+    //     })
+    //     .catch((err) => console.log(err));
+    // });
+    console.log(CurrUser);
+    const Prods = CurrUser.cart.map((ele) => ele.CartProduct);
+    console.log(Prods);
+    const detailedProduct = [];
+    Prods.forEach((ele) => {
+      products.findById(String(ele)).then((prod) => detailedProduct.push(prod));
     });
-    console.log(prods);
+    console.log(detailedProduct);
     res.redirect('/');
   });
 
@@ -34,6 +35,7 @@ CartRouter.get('/cart', (req, res, next) => {
   //     activeClass: 'active',
   //     route: '/cart',
   //     ListOfproducts: prod,
+  // isloggedIn: req.session.loggedIn
   //   });
   // });
 });

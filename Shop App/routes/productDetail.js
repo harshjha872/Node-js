@@ -12,6 +12,7 @@ detailRouter.get('/:id', (req, res, next) => {
       activeClass: '',
       route: `/product/${productID}`,
       product: prod,
+      isloggedIn: req.session.loggedIn,
     });
   });
   // products.fetchAll((allProd) => {

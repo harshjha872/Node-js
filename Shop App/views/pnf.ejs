@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     
-    <%- include('non-repeating-templates/navbar.ejs') %>
+    <%- include('non-repeating-templates/navbar.ejs'),{isloggedIn:isloggedIn} %>
 
     <h1>Page Not Found status code 404</h1>
   </body>

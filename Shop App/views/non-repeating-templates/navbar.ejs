@@ -25,8 +25,14 @@ referrerpolicy="no-referrer"
       <form action="/logout" method="POST">
         <button type="submit" class="ui secondary button"> Logout </button>
       </form> -->
+      <% if(isloggedIn) { %>
+        <form action="/logout" method="POST">
+          <button type="submit" class="ui secondary button"> Logout </button>
+        </form>
+        <% } else {%>
       <a href="/signup" class="ui item"> Signup </a>
       <a href="/login" class="ui item"> Login </a>
+      <% } %>
     </div>
   </div>
 </div>

@@ -23,6 +23,7 @@ editRouter.get('/:id', (req, res, next) => {
       activeClass: 'active',
       route: `/editproduct/${id}`,
       product: prod,
+      isloggedIn: req.session.loggedIn,
     });
   });
 });

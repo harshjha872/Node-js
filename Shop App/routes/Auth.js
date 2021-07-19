@@ -8,6 +8,7 @@ Route.get('/signup', (req, res, next) => {
     title: 'Signup',
     activeClass: null,
     route: '/signup',
+    isloggedIn: req.session.loggedIn,
   });
 });
 
@@ -37,6 +38,7 @@ Route.get('/login', (req, res, next) => {
     title: 'Login',
     activeClass: null,
     route: '/login',
+    isloggedIn: false,
   });
 });
 
@@ -58,6 +60,13 @@ Route.post('/login', (req, res, next) => {
         res.redirect('/login');
       })
       .catch((err) => console.log(err));
+  });
+});
+
+Route.post('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    console.log(err);
+    res.redirect('/');
   });
 });
 
