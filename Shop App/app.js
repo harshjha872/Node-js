@@ -51,6 +51,7 @@ app.use((req, res, next) => {
     title: 'Page not found',
     activeClass: '',
     route: '',
+    isloggedIn: req.session.loggedIn,
   });
 });
 

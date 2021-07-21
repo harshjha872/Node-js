@@ -5,23 +5,17 @@ const products = require('../Database/database-mongoose');
 
 CartRouter.get('/cart', (req, res, next) => {
   user.findOne({ email: req.session.user.email }).then((CurrUser) => {
-    // const prods = CurrUser.cart.map((ele) => {
-    //   return products
-    //     .findById(String(ele.CartProduct))
-    //     .then((Prod) => {
-    //       return Prod;
-    //     })
-    //     .catch((err) => console.log(err));
-    // });
-    console.log(CurrUser);
-    const Prods = CurrUser.cart.map((ele) => ele.CartProduct);
-    console.log(Prods);
-    const detailedProduct = [];
-    Prods.forEach((ele) => {
-      products.findById(String(ele)).then((prod) => detailedProduct.push(prod));
-    });
-    console.log(detailedProduct);
-    res.redirect('/');
+    CurrUser.populate('cart.CartProduct')
+      .execPopulate()
+      .then((prods) => {
+        res.render('cart.ejs', {
+          title: 'Cart',
+          activeClass: 'active',
+          route: '/cart',
+          ListOfproducts: prods.cart,
+          isloggedIn: req.session.loggedIn,
+        });
+      });
   });
 
   // let totalprice = 0;

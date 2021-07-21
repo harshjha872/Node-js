@@ -13,24 +13,24 @@
       <div class="container">
         <div class="ui four column centered grid">
           <% if(ListOfproducts) { %>
-            <% ListOfproducts.products.forEach(ele => { %>
+            <% ListOfproducts.forEach(ele => { %>
               <div class="column">
                 <div class="ui centered card">
                   <div class="image">
-                    <img src="<%= ele.imageUrl %>" />
+                    <img src="<%= ele.CartProduct.imageUrl %>" />
                   </div>
                   <div class="content">
-                    <a href="/product/<%= ele.id %>" class="header"><%= ele.title %></a>
+                    <a href="/product/<%= ele.CartProduct._id %>" class="header"><%= ele.CartProduct.title %></a>
                     <div class="description">
-                      <%= ele.discription %>
+                      <%= ele.CartProduct.discription %>
                     </div>
                   </div>
                   <div class="extra content">
-                    <div class="header"><%= ele.price %> $</div>
-                    <div class="header">Quantity: <%= ele.qty %></div>
+                    <div class="header"><%= ele.CartProduct.price %> $</div>
+                    <div class="header">Quantity: <%= ele.quantity %></div>
                   </div>
                   <div class="extra content">
-                    <a href="/product/<%= ele.id %>"><button class="ui secondary button">Details</button></a>
+                    <a href="/product/<%= ele.CartProduct._id %>"><button class="ui secondary button">Details</button></a>
                     
 
                   </div>
