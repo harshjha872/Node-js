@@ -26,6 +26,7 @@ router.post('/gettext', (req, res, next) => {
     discription: req.body.discription,
     imageUrl: req.body.imageUrl,
     price: Number(req.body.price),
+    userId: req.session.user._id,
   });
 
   //.save() is a mongoose inbuilt function that saves our data to the database
