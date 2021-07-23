@@ -6,20 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><% title %></title>
     <%- include('non-repeating-templates/navbar.ejs'),{isloggedIn:isloggedIn} %>
+
     <div class="container centered">
         <div class="ui three column six wide centered grid">
           <div class="column">
 
           </div>
+          
           <div class="column">
+            
+            <% if(loginError) { %>
+
+              <div class="ui negative message">
+                <div class="header">
+                  <%= loginError %>
+                </div>
+              </div>
+              
+             <% } %>
+
             <form class="ui form" action="/login" method="POST">
               <div class="field">
                 <label>Email</label>
-                <input type="text" name="email" placeholder="email">
+                <input type="text" name="email" placeholder="email" value="<%= previousInput.email %>">
               </div>
               <div class="field">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="password">
+                <input type="password" name="password" placeholder="password" value="<%= previousInput.password %>">
               </div>
               <button class="ui button" type="submit">Login</button>
             </form>

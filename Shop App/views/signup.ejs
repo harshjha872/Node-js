@@ -12,17 +12,42 @@
 
           </div>
           <div class="column">
+            <% if(loginError) { %>
+
+              <div class="ui negative message">
+                <div class="header">
+                  <%= loginError %>
+                </div>
+              </div>
+              
+             <% } %>
             <form class="ui form" action="/signup" method="POST">
               <div class="field">
                 <label>Email</label>
-                <input type="text" name="email" placeholder="email">
+                <input type="text" name="email" placeholder="email" value="<%= previousInput.email %>">
               </div>
               <div class="field">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="password">
+                <input type="password" name="password" placeholder="password" value="<%= previousInput.password %>">
+              </div>
+              <div class="field">
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" value="<%= previousInput.confirmPassword %>">
               </div>
               <button class="ui button" type="submit">Signup</button>
             </form>
+            <div class="ui info message">
+              <div class="header">
+                The password should contain at least:
+              </div>
+              <ul class="list">
+                <li>8 letters</li>
+                <li>One uppercase letter</li>
+                <li>One lowercase letter</li>
+                <li>One special character</li>
+                <li>One number</li>
+              </ul>
+            </div>
           </div>
           <div class="column">
             

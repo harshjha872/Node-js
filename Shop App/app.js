@@ -13,7 +13,8 @@ const session = require('express-session');
 const MongoConnectSession = require('connect-mongodb-session')(session);
 const Auth = require('./routes/Auth');
 const Protectroute = require('./routes/ProtectRoutes');
-
+const flash = require('connect-flash');
+const { check } = require('express-validator/check');
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -37,11 +38,15 @@ app.use(
   })
 );
 
+//FlASHES
+
+app.use(flash());
+
 //ROUTES
 
+app.use(Auth);
 app.use(PublicRouter);
 app.use('/product', detailRouter);
-app.use(Auth);
 app.use('/admin', Protectroute, adminRouter);
 app.use(Protectroute, CartRouter);
 app.use('/editproduct', Protectroute, editRouter);
