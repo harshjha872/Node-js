@@ -14,13 +14,41 @@ const MongoConnectSession = require('connect-mongodb-session')(session);
 const Auth = require('./routes/Auth');
 const Protectroute = require('./routes/ProtectRoutes');
 const flash = require('connect-flash');
-const { check } = require('express-validator/check');
+const multer = require('multer');
+
 const app = express();
+
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//UPLOADS
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'images');
+  },
+});
+
+const filterFile = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/png'
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+app.use(
+  multer({ storage: multerStorage, fileFilter: filterFile }).single('image')
+);
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('images', express.static(path.join(__dirname, 'images')));
 
 //SESSIONS
 
