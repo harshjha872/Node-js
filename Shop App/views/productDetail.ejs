@@ -30,15 +30,13 @@
                   </div>
                   <div class="extra content">
 
-                  <a href="/editproduct/<%= product.id %>">Edit</a>
+                  <a href="/editproduct/<%= product._id %>">Edit</a>
                   </div>
                   <div class="extra content">
                     <form action="/product/deleteproduct" method="POST">
                       <button class="ui inverted red button">Delete</button>
                       <input type="hidden" name="deleteProduct" value="<%= product.id %>">
                     </form>
-
-                    
                   </div>
 
                 </div>

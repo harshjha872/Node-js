@@ -19,7 +19,7 @@
 
           </div>
           <div class="column">
-            <form class="ui form" action="/editproduct/doneedit" method="POST">
+            <form class="ui form" action="/editproduct/doneedit" method="POST" enctype="multipart/form-data">
               <div class="field">
                 <label>Title</label>
                 <input type="text" name="updatedtitle" placeholder="Title" value="<%=product.title%>">
@@ -28,9 +28,13 @@
                 <label>Discription</label>
                 <input type="text" name="updateddiscription" placeholder="Discription" value="<%=product.discription%>">
               </div>
-              <div class="field">
+              <!-- <div class="field">
                 <label>Image url</label>
                 <input type="text" name="updatedimageUrl" placeholder="Image url" value="<%=product.imageUrl%>">
+              </div> -->
+              <div class="field">
+                <label>Image</label>
+                <input type="file" name="image" placeholder="Image">
               </div>
               <div class="field">
                 <label>Price</label>

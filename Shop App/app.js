@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const adminRouter = require('./routes/admin');
 const PublicRouter = require('./routes/public');
@@ -29,6 +30,9 @@ const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'images');
   },
+  filename: (req, file, cb) => {
+    cb(null, Math.random() + '-' + file.originalname);
+  },
 });
 
 const filterFile = (req, file, cb) => {
@@ -48,7 +52,7 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('images', express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'images')));
 
 //SESSIONS
 
@@ -75,6 +79,19 @@ app.use(flash());
 app.use(Auth);
 app.use(PublicRouter);
 app.use('/product', detailRouter);
+
+app.get('/download/:imageUrl', (req, res, next) => {
+  const ImageName = req.params.imageUrl;
+  const Imagepath = path.join('images', ImageName);
+  // fs.readFile(Imagepath, (err, data) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   res.send(data);
+  // });
+  res.download(Imagepath);
+});
+
 app.use('/admin', Protectroute, adminRouter);
 app.use(Protectroute, CartRouter);
 app.use('/editproduct', Protectroute, editRouter);

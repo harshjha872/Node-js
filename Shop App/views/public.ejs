@@ -15,12 +15,12 @@
           <% if(ListOfproducts) { %>
             <% ListOfproducts.forEach(ele => { %>
               <div class="column">
-                <div class="ui centered card">
-                  <div class="image">
-                    <img src="<%= ele.imageUrl %>" />
+                <div class="ui centered raised stackable card">
+                  <div class="ui medium fluid image">
+                    <img src="<%= ele.imageUrl %>" alt="img"/>
                   </div>
                   <div class="content">
-                    <a href="/product/<%= ele.id %>" class="header"><%= ele.title %></a>
+                    <a href="/product/<%= ele._id %>" class="header"><%= ele.title %></a>
                     <div class="description">
                       <%= ele.discription %>
                     </div>
@@ -32,12 +32,13 @@
                     <form action="/cart" method="POST">
                       <input type="hidden" name="cartId" value="<%= ele.id %>">
                       <button class="ui button" type="submit">Add to cart</button>
-                      <a href="/editproduct/<%= ele.id %>">Edit</a>
+                      <a href="/editproduct/<%= ele._id %>">Edit</a>
                     </form>
 
                   </div>
                   <div class="extra content">
-                    <a href="/product/<%= ele.id %>"><button class="ui secondary button">Details</button></a>
+                    <a href="/product/<%= ele._id %>"><button class="ui secondary button">Details</button></a>
+                    <a href="/download/<%= ele.imageUrl %>">download</a>
                   </div>
                 </div>
               </div>

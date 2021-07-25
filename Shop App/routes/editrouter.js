@@ -36,12 +36,17 @@ editRouter.post('/doneedit', (req, res, next) => {
   //   req.body.updatedprice,
   //   id
   // );
+
   ProductM.findById(id)
     .then((prod) => {
+      const image = req.file;
+      if (image) {
+        prod.imageUrl = image.filename;
+      }
       prod.title = req.body.updatedtitle;
       prod.discription = req.body.updateddiscription;
-      prod.imageUrl = req.body.updatedimageUrl;
       prod.price = req.body.updatedprice;
+
       return prod.save();
     })
     .then(() => res.redirect('/'));

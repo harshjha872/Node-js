@@ -25,11 +25,7 @@ router.post('/gettext', (req, res, next) => {
   const image = req.file;
   const price = Number(req.body.price);
 
-  const imageUrl = `images/${image.path.split('\\')[1]}.${
-    image.mimetype.split('/')[1]
-  }`;
-
-  console.log(imageUrl);
+  const imageUrl = image.filename;
 
   if (!image) {
     res.redirect('/');

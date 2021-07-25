@@ -1,20 +1,22 @@
 const express = require('express');
-const products = require('../modals/product');
+// const products = require('../modals/product');
 const detailRouter = express.Router();
 const Product = require('../Database/database-mongoose');
 
-detailRouter.get('/:id', (req, res, next) => {
-  const productID = req.params.id;
-
-  Product.findById(productID).then((prod) => {
-    res.render('productDetail', {
-      title: 'details',
-      activeClass: '',
-      route: `/product/${productID}`,
-      product: prod,
-      isloggedIn: req.session.loggedIn,
-    });
-  });
+detailRouter.get('/:productId', (req, res, next) => {
+  const productID = req.params.productId;
+  console.log(req.params);
+  Product.findById(productID)
+    .then((prod) => {
+      res.render('productDetail', {
+        title: 'details',
+        activeClass: '',
+        route: `/product/${productID}`,
+        product: prod,
+        isloggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => console.log(err));
   // products.fetchAll((allProd) => {
   //   const foundedProd = allProd.find((curr) => curr.id === productID);
   //   res.render('productDetail', {
