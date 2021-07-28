@@ -45,44 +45,10 @@
               <% }) %>
           <% } %>    
         </div>
-          
-            <a  class="ui secondary button" href="/" id="previous">Previous</a>
-          
-         
-            <a  class="ui secondary button" href="/" id="next">Next</a>
-          
-      </div>
+          <a class="ui secondary button" href="/" id="previous"><<</a>
+          <a class="ui secondary button" href="/" id="next">>></a>
+        </div>
     </main>
   </body>
-  <script>
-    console.log(window.location.search);
-    const previous = document.querySelector('#previous');
-    const next = document.querySelector('#next');
-    let current = 1;
-    console.log(current);
-    previous.addEventListener('click',()=>{
-      if(current === 0) {
-        next.href = `http://localhost:3000/?page=${current}`
-        console.log('exit pre');
-        return;
-      }
-      console.log('suc');
-      current = current - 1;
-      console.log(current);
-      next.href = `http://localhost:3000/?page=${current}`
-    })
-
-    next.addEventListener('click',()=>{
-      if(current === 4) {
-        next.href = `http://localhost:3000/?page=${current}`
-        console.log('exit next')
-        return
-      }
-      console.log('suc');
-      console.log(current);
-      current = current + 1;
-      next.href = `http://localhost:3000/?page=${current}`
-      
-    })
-  </script>
+  <script src="/javascript/pagination.js"></script>
 </html>
