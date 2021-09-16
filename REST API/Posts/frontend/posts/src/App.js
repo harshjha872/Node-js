@@ -1,17 +1,18 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 function App() {
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
   let files;
-  fetch("http://localhost:8080/")
-    .then((res) => res.json())
-    .then((result) => {
-      setContent(result);
-    });
+  useEffect(() => {
+    fetch("http://localhost:8080/")
+      .then((res) => res.json())
+      .then((result) => {
+        setContent(result);
+      });
+  }, []);
 
   const imageHandler = (e) => {
-    console.log(e.target.files[0]);
     files = e.target.files[0];
   };
 
@@ -19,7 +20,7 @@ function App() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("message", message);
-    formData.append("file", files);
+    formData.append("image", files);
 
     fetch("http://localhost:8080/sendpost", {
       method: "POST",
@@ -40,7 +41,7 @@ function App() {
       <div>{content}</div>
       <form onSubmit={onsubmitHandler}>
         <input type="text" onChange={inputTextHandler} value={message} />
-        <input type="file" onChange={imageHandler} />
+        <input type="file" onChange={imageHandler} name="image" />
         {/* <img src={imageUrl} alt="upload image" /> */}
         <button type="submit">Submit</button>
       </form>

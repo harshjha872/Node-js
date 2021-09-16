@@ -10,4 +10,5 @@ Route.get("/", (req, res, next) => {
 Route.get("/getpost", controllers.getdata);
 
 Route.post("/sendpost", controllers.sendData);
+
 module.exports = Route;

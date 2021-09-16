@@ -6,12 +6,9 @@ exports.getdata = (req, res, next) => {
 
 exports.sendData = (req, res, next) => {
   const message = req.body.message;
-  const image = req.file;
-  console.log(req.file);
-  console.log(message);
-  console.log(image);
+  const imageUrl = req.file;
   res.json({
     message: "Success",
+    image: imageUrl,
   });
-  // console.log("done");
 };
