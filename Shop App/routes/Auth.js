@@ -1,41 +1,41 @@
-const express = require('express');
-const user = require('../modals/user');
+const express = require("express");
+const user = require("../modals/user");
 const Route = express.Router();
-const bcrypt = require('bcryptjs');
-const { validationResult, check, body } = require('express-validator/check');
+const bcrypt = require("bcryptjs");
+const { validationResult, check, body } = require("express-validator");
 
-Route.get('/signup', (req, res, next) => {
-  let message = req.flash('error');
+Route.get("/signup", (req, res, next) => {
+  let message = req.flash("error");
   if (message.length > 0) {
     message = message[0];
   } else {
     message = null;
   }
-  res.render('signup', {
-    title: 'Signup',
+  res.render("signup", {
+    title: "Signup",
     activeClass: null,
-    route: '/signup',
+    route: "/signup",
     isloggedIn: req.session.loggedIn,
     loginError: message,
     previousInput: {
-      email: '',
-      password: '',
-      confirmPassword: '',
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 });
 
 Route.post(
-  '/signup',
+  "/signup",
   [
     check(
-      'email',
-      'Email does not exist, enter a valid Email address'
+      "email",
+      "Email does not exist, enter a valid Email address"
     ).isEmail(),
-    body('password', 'Write a strong password').isStrongPassword(),
-    body('confirmPassword').custom((value, { req }) => {
+    body("password", "Write a strong password").isStrongPassword(),
+    body("confirmPassword").custom((value, { req }) => {
       if (value !== req.body.password)
-        throw new Error('Password confirmation does not match password');
+        throw new Error("Password confirmation does not match password");
 
       return true;
     }),
@@ -47,10 +47,10 @@ Route.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).render('signup', {
-        title: 'Signup',
+      return res.status(422).render("signup", {
+        title: "Signup",
         activeClass: null,
-        route: '/signup',
+        route: "/signup",
         isloggedIn: req.session.loggedIn,
         loginError: errors.array()[0].msg,
         previousInput: {
@@ -63,8 +63,8 @@ Route.post(
 
     user.findOne({ email: email }).then((result) => {
       if (result) {
-        req.flash('error', 'Email already exist, try another.');
-        return res.redirect('/signup');
+        req.flash("error", "Email already exist, try another.");
+        return res.redirect("/signup");
       }
       bcrypt.hash(password, 12).then((hashedpass) => {
         const NewUser = new user({
@@ -74,41 +74,41 @@ Route.post(
         });
 
         NewUser.save();
-        res.redirect('/');
+        res.redirect("/");
       });
     });
   }
 );
 
-Route.get('/login', (req, res, next) => {
-  let message = req.flash('error');
+Route.get("/login", (req, res, next) => {
+  let message = req.flash("error");
   if (message.length > 0) {
     message = message[0];
   } else {
     message = null;
   }
 
-  res.render('login', {
-    title: 'Login',
+  res.render("login", {
+    title: "Login",
     activeClass: null,
-    route: '/login',
+    route: "/login",
     isloggedIn: false,
     loginError: message,
     previousInput: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 });
 
-Route.post('/login', (req, res, next) => {
+Route.post("/login", (req, res, next) => {
   const Email = req.body.email;
   const password = req.body.password;
 
   user.findOne({ email: Email }).then((foundedUser) => {
     if (!foundedUser) {
-      req.flash('error', 'Invalid email or password');
-      res.redirect('/login');
+      req.flash("error", "Invalid email or password");
+      res.redirect("/login");
     }
 
     bcrypt
@@ -117,20 +117,20 @@ Route.post('/login', (req, res, next) => {
         if (doMatch) {
           req.session.loggedIn = true;
           req.session.user = foundedUser;
-          return res.redirect('/');
+          return res.redirect("/");
         } else {
-          req.flash('error', 'Invalid password');
-          res.redirect('/login');
+          req.flash("error", "Invalid password");
+          res.redirect("/login");
         }
       })
       .catch((err) => console.log(err));
   });
 });
 
-Route.post('/logout', (req, res, next) => {
+Route.post("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     console.log(err);
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 
