@@ -1,13 +1,12 @@
-const express = require('express');
-
-const admin = require('./admin');
-const products = require('../modals/product');
+const express = require("express");
+const admin = require("./admin");
+const products = require("../modals/product");
 const Pubrouter = express.Router();
-const Product = require('../Database/database-mongoose');
+const Product = require("../Database/database-mongoose");
 
 let NoOfProductsDisplayed = 3;
 
-Pubrouter.get('/', (req, res, next) => {
+Pubrouter.get("/", (req, res, next) => {
   // products.fetchAll((prod) => {
   //   res.render('public', {
   //     title: 'home page',
@@ -18,7 +17,7 @@ Pubrouter.get('/', (req, res, next) => {
   // });
   let previous = false;
   let nextPage = true;
-  const page = +req.query.page;
+  const page = +req.query.page || 1;
 
   if (page === 1) previous = false;
   if (page === NoOfProductsDisplayed) nextPage = false;
@@ -28,17 +27,18 @@ Pubrouter.get('/', (req, res, next) => {
     .skip((page - 1) * NoOfProductsDisplayed)
     .limit(NoOfProductsDisplayed)
     .then((products) => {
-      res.render('public', {
-        title: 'home page',
-        activeClass: 'active',
-        route: '/',
+      res.render("public", {
+        title: "home page",
+        activeClass: "active",
+        route: "/",
         ListOfproducts: products,
         isloggedIn: req.session.loggedIn,
         previous: previous,
         next: nextPage,
         totalProduct: NoOfProductsDisplayed,
       });
-    });
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = Pubrouter;
